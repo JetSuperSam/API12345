@@ -1,0 +1,22 @@
+class API:    
+    def help_info(self):
+        text = " "
+        return text
+        
+    def load_model(self, filename = 'model.pkl'):
+        with open(filename, 'rb') as file:
+            self.model = pickle.load(file)
+            
+    def predict_date(self, date):
+        self.date = date
+        date = pd.to_datetime(self.date)
+
+        # прогнозирование значений на новых данных
+        pred = self.model.predict(pd.DataFrame({'datetime': [date]}))
+
+
+        
+        results = pd.DataFrame({'fare_amount': pred[0][0], 'trip_time': pred1[0][1]})
+        
+        
+        return results
